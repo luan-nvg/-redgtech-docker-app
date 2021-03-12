@@ -1,0 +1,40 @@
+version: "3.5"
+
+networks:
+    backend:
+
+services:
+
+    ctredgtechapp:
+      container_name: "ctredgtechapp"
+      image: "redgtechapp:latest"
+      build: ./build/docker
+      environment:
+        - TZ=America/New_York
+        - DEBIAN_FRONTEND=noninteractive
+        - ANDROID_HOME=/usr/lib/android-sdk
+        - ANDROID_SDK_ROOT=/usr/lib/android-sdk
+        - PATH=${PATH}:${ANDROID_HOME}/cmdline-tools/tools/bin:$PATH
+        - LD_LIBRARY_PATH=${ANDROID_HOME}/tools/lib64:${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib
+        - QT_QPA_PLATFORM=offscreen
+        - BUILD_HOMOLOGACAO= cd android && ./gradlew assembleRelease && cd .. && react-native run-android --variant=release
+      # env_file:
+      #     - .env.local
+      networks:
+        - backend
+      # environment :
+      #   - ANDROID_SDK_ROOT=teste
+      #   - PATH=$ANDROID_SDK_ROOT/cmdline-tools/tools/bin:$PATH
+      privileged: true  #permite acesso privilegiado para USB
+
+      volumes:
+        - /home/luan/Projects/redgetch/redgtech-docker-app/redgtech-app:/Projects/redgtech-app
+        - /dev/bus/usb:/dev/bus/usb
+      ports:
+        - 8081:8081
+        
+      tty: true
+ 
+
+
+

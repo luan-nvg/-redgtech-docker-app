@@ -1,0 +1,1 @@
+chown 7777 * && chown ${USER}:${USER} *

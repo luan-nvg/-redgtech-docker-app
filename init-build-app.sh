@@ -1,0 +1,1 @@
+ANDROID_HOME=/usr/lib/android-sdk && cd $ANDROID_HOME/cmdline-tools/tools/bin/ && ./sdkmanager --licenses && cd /Projects/redgtech-app && react-native run-android

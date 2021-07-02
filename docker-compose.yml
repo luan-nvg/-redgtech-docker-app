@@ -28,7 +28,7 @@ services:
       privileged: true  #permite acesso privilegiado para USB
 
       volumes:
-        - /home/luan/Projects/redgetch/redgtech-docker-app/redgtech-app:/Projects/redgtech-app
+        - /home/luan/Projects/redgtech/redgtech-docker-app/redgtech-app:/Projects/redgtech-app
         - /dev/bus/usb:/dev/bus/usb
       ports:
         - 8081:8081
